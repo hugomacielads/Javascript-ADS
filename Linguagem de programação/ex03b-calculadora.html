@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de documento HTML</title>
+    <script>
+        // 'use strict' impede que variáveis sejam declaradas
+        // sem o uso de let, var ou const
+        // Inicializar variáveis diretamente é má prática de
+        // programação
+        'use strict'
+        
+        /*
+            Solicite ao usuário para informar dois números e um operador
+            matemaático. Você usará três prompt(), um para cada número e
+            o terceiro para o operador.
+            Aceite os seguintes operadores:
+            + => adição
+            - => subtração
+            *, X ou x => multiplicação
+            / ou : => divisão
+            Efetue o cálculo apropriado de acordo com o operador informado
+            e informe o resultado usando document.write().
+        */
+
+        // parseFloat() *tenta* converter strings em números de ponto flutuante
+        let num1 = parseFloat(prompt('Informe o primeiro número:'))
+        let num2 = parseFloat(prompt('Informe o segundo número:'))
+        let oper = prompt('Informe a operação desejada (+, -, *, x, X, / ou :):')
+
+        let res, temErro = false
+
+        // Teste de validação dos números
+        if(isNaN(num1) || isNaN(num2)) {
+           alert('ERRO: pelo menos um dos números informados é inválido.')
+           temErro = true
+        }
+        else {
+            switch(oper) {
+                case '+':
+                    res = num1 + num2
+                    break
+
+                case '-':
+                    res = num1 - num2
+                    break
+
+                case 'X':       // case vazio
+                case 'x':       // case vazio
+                case '*':
+                    res = num1 * num2
+                    break
+
+                case '/':       // case vazio
+                case ':':
+                    res = num1 / num2
+                    break
+
+                default:        // se não entrar em nenhum case
+                    alert('ERRO: o operador informado é inválido.')
+                    temErro = true
+            }
+        }
+
+        if(!temErro) {
+            //document.write('O resultado da operação: ' + num1 + ' ' + oper + ' ' +
+            //    num2 + ' é igual a ' + res + '.')
+            
+            // Usando string template (que usa acentos graves - backtick)
+            document.write(`O resultado da operação:<br> ${num1} ${oper} ${num2} 
+                é igual a ${res}.`)
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

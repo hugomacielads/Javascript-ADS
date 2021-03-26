@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vetores</title>
+    <script>
+        // 'use strict' impede que variáveis sejam declaradas
+        // sem o uso de let, var ou const
+        // Inicializar variáveis diretamente é má prática de
+        // programação
+        'use strict'
+        
+        // Declarando um vetor vazio
+        let vetor1 = []         // Forma moderna
+        let vetor2 = Array()    // Forma tradicional
+        
+        // Declarando e inicializando vetores com elementos
+        let carros = ['Fusca', 'Del Rey', 'Passat', 'Opala']
+        let cores = Array('verde', 'laranja', 'branco', 'vermelho', 'amarelo', 'rosa')
+        let numeros = Array(2, 3, 5, 7, 11, 13, 17, 19)
+
+        // Vetor de tipos misturados
+        let mistura = ['João das Couves', 63, false, null, undefined]
+
+        let frutas = []
+
+        /* push(): insere novos elementos no FINAL do vetor */
+        frutas.push('laranja')
+        frutas.push('melancia')
+        frutas.push('maçã', 'limão', 'pera') // Pode inserir mais de um elemento de uma vez
+        console.log(frutas)
+
+        /* unshift(): insere novos elementos no INÍCIO do vetor */
+        frutas.unshift('jabuticaba')
+        frutas.unshift('amora')
+
+        /* pop(): retira UM elemento do FINAL do vetor */
+        let retirado = frutas.pop() // Retira e coloca em uma variável
+        frutas.pop()    // Retira e perde
+        console.log('Retirado:', retirado)
+
+        /* shift(): retira UM elemento do INÍCIO do vetor */
+        frutas.shift()      // Retira e perde
+        retirado = frutas.shift()   // Retira e coloca em uma variável
+        console.log('Retirado:', retirado)
+
+        /* splice(): insere elementos em uma posição específica do vetor 
+            Parâmetros:
+            1º: a posição onde será feita a inserção
+            2º: quantos elementos serão APAGADOS (para inserções, deve ser zero (0))
+            3º em diante: os elementos que serão inseridos
+        */
+        frutas.splice(2, 0, 'morango')
+        frutas.splice(1, 0, 'jaca', 'ameixa')
+
+        /* Usando o splice() para fazer substituição */
+        frutas.splice(3, 1, 'manga') // 1 elemento será apagado e substituído na posição 3
+
+        /* splice(): também retira elementos de uma posição específica do vetor
+            Parâmetros:
+            1º: posição onde será feita a retirada
+            2º: quantidade de elementos que serão removidos (> 0)
+        */
+        retirado = frutas.splice(1, 1)
+        console.log('Retirado:', retirado)
+
+        // Colocando novos elementos para massa de teste
+        frutas.push('framboesa', 'caju', 'maracujá', 'mexerica')
+
+        // Retirando vários elementos de uma vez
+        retirado = frutas.splice(4, 3) // A partir da posição 4, retire 3 elementos
+        console.log('Retirado:', retirado)
+
+        // Retirando o último elemento do vetor
+        frutas.splice(-1, 1) // Posição negativa conta as posições de trás para frente
+
+        /* length: retorna o número de elementos do vetor */
+        // Lembrar SEMPRE de terminar a palavra length com TH */
+        console.log('Número de elementos:', frutas.length) // Não pode ser lenght
+
+        /* indexOf: retorna a posição da primeira ocorrência do valor especificado
+            ou -1 caso o valor não exista no vetor */
+        console.log('ameixa: ', frutas.indexOf('ameixa'))
+        console.log('melão: ', frutas.indexOf('melão'))
+        console.log('morango: ', frutas.indexOf('morango'))
+
+        if(frutas.indexOf('jambo') >= 0) {
+            console.log('Existe')
+        }
+        else {
+            console.log('Não existe')
+        }
+
+        /* includes(): retorna se o valor de busca existe (true) ou não existe (false)
+            dentro do vetor */
+        console.log('ameixa: ', frutas.includes('ameixa'))
+        console.log('melão: ', frutas.includes('melão'))
+        console.log('morango: ', frutas.includes('morango'))
+
+        if(frutas.includes('jambo')) {
+            console.log('Existe')
+        }
+        else {
+            console.log('Não existe')
+        }
+
+        console.log(frutas)
+        alert(frutas)               // Dá certo, mas não é bonito
+        document.write(frutas)      // Dá certo, mas não é bonito
+
+        /* slice(): "fatia" um vetor, gerando um outro vetor apenas com o 
+            pedaço desejado
+            Parâmetros:
+            1º: posição inicial (incluída)
+            2º: posição final (NÃO É INCLUÍDA)
+        */
+        let parte = frutas.slice(1, 4)
+        console.log(frutas)
+        console.log(parte)
+
+        // Quando chamado com apenas um parâmetro, a fatia inclui daquela posição
+        // até o final do vetor
+        let outraParte = frutas.slice(3)
+        console.log(outraParte)
+
+        // Acessando posições do vetor
+        // A fruta que está na terceira posição
+        console.log(frutas[2])
+
+        // A primeira fruta
+        console.log(frutas[0])
+
+        // A última fruta
+        console.log(frutas[frutas.length - 1])  
+
+        console.log('-----------------------------')
+
+        // Percurso na ordem crescente
+        let i
+        for(i = 0; i < frutas.length; i++) {
+            console.log(frutas[i])
+        }
+        console.log('Valor final de i:', i)
+
+        console.log('-----------------------------')
+
+        // Percurso na ordem decrescente
+        for(let i = frutas.length - 1; i >= 0; i--) {
+            console.log(frutas[i])
+        }
+
+        console.log('-----------------------------')
+
+        /* PERCURSO USANDO O LOOP for..of 
+            1) SEMPRE percorre TODOS os elementos, do primeiro ao último
+            2) NÃO é possível usá-lo para percorrer na ordem descrescente
+        */
+        // frutas (plural) é o vetor
+        // fruta (singular) é uma variável que, a cada iteração do loop,
+        // receberá o valor de um dos elementos do vetor, na ordem.
+        // Essa variável pode ter QUALQUER nome válido
+        for(let fruta of frutas) {
+            console.log(fruta)
+        }      
+
+        console.log('forEach: -----------------------------')
+
+        /* PERCURSO USANDO forEach() 
+            forEach() é uma FUNÇÃO que todos os vetores têm
+            e que espera, como parâmetro, outra FUNÇÃO que
+            recebe um outro parâmetro, que contém cada um dos
+            elementos do vetor
+        */
+        frutas.forEach(function(x) {
+            console.log(x)
+        })
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

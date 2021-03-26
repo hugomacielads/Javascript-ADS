@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de documento HTML</title>
+    <script>
+        // 'use strict' impede que variáveis sejam declaradas
+        // sem o uso de let, var ou const
+        // Inicializar variáveis diretamente é má prática de
+        // programação
+        'use strict'
+
+        /*
+            OPERADORES RELACIONAIS
+            >   Maior que
+            <   Menor que
+            >=  Maior ou igual que
+            <=  Menor ou igual que
+        */
+                
+        let a = 3, b = 6, c = '6' // Operador de atribuição
+
+        // Operador de igualdade
+        // Testando a igualdade de duas variáveis
+        // Para testar a igualdade, usamos DOIS sinais de igual
+        //alert(a == b)     // false
+        //alert(b == c)       // true
+
+        // Operador de igualdade estrita ou
+        // "exatamente igual"
+        //alert(b === c)      // false
+
+        // Operador de diferença
+        //alert(a != b)   // true
+        //alert(b != c)
+
+        // Operador de diferença estrita ("exatamente diferente")
+        //alert(b !== c)
+
+        /*
+            OPERADORES LÓGICOS
+            &&  E lógico (and)
+            ||  OU lógico (or)
+            !   NÃO lógico (not)
+        */
+       //alert(5 > 4 && 2 > 1)      // true
+       //alert(5 < 4 && 2 > 1)
+
+       //alert(5 > 4 || 2 > 1)        // true
+       //alert(5 < 4 || 2 > 1)        // true
+
+       /*
+            CONVERSÃO DE NÚMEROS PARA BOOLEANO
+            0 -> será convertido para false
+            Qualquer valor não-zero -> convertido para true
+       */
+       
+       // O operador not (!) tem uma precedência muita alta
+       // (é interpretado primeiro) e, por isso, quase sempre
+       // é usado com parênteses
+       alert(!(5 < 4 && 2 > 1))
+
+       // PRECEDÊNCIA DOS OPERADORES LÓGICOS
+       // 1º !
+       // 2º &&
+       // 3º ||   
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

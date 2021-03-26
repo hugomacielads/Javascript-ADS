@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de documento HTML</title>
+    <style>
+        label {
+            /* Faz com que os labels ocupem sua própria linha */
+            display: block;  
+        }
+        div {
+            /* Coloca margem inferior para dar espaço vertical entre as divs */
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Calculadora DOM</h1>
+
+    <div>
+        <label>Primeiro número</label>
+        <input type="number" id="num1" step="0.01">
+    </div>
+
+    <div>
+        <label>Operação</label>
+        <select id="op">
+            <option>(Selecione)</option>
+            <option>Somado a</option>
+            <option>Subtraído de</option>
+            <option>Multiplicado por</option>
+            <option>Dividido por</option>
+            <option>Elevado a</option>
+            <option>Resto da divisão por</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Segundo número</label>
+        <input type="number" id="num2" step="0.01">
+    </div>
+
+    <div id="resultado"></div>
+
+    <div>
+        <button id="calcular">Calcular</button>
+    </div>
+
+    <!-- 
+        Quando há a manipulação de elementos HTML no código JavaScript, 
+        a seção <script> precisa ser deslocada para o final da seção <body>.
+    -->
+    <script>
+        // 'use strict' impede que variáveis sejam declaradas
+        // sem o uso de let, var ou const
+        // Inicializar variáveis diretamente é má prática de
+        // programação
+        'use strict'
+
+        /* 
+            Monte um formulário com os seguintes campos:
+            * Primeiro número (input numérico)
+            * Operação aritmética (select, com as opções de soma, subtração,
+                multiplicação, divisão, potenciação e resto da divisão)
+            * Segundo número (input numérico)
+            * Div para exibição do elResultado da operação aritmética
+            * Botão "elCalcular"
+            Validações:
+            * Os campos de número devem estar preenchidos e com números válidos
+            * Deve ter sido selecionada uma operação artimética válida
+        */
+
+        // 1) Captura dos elementos
+        const elNum1 = document.getElementById('num1')
+        const elOp = document.getElementById('op')
+
+        const elNum2 = document.querySelector('#num2')
+        const elResultado = document.querySelector('#resultado')
+        const elCalcular = document.querySelector('#calcular')
+
+        function efetuar() {
+
+            // 2) Validação do formulário
+
+            let valNum1 = parseFloat(elNum1.value) // poderia ter sido parseFloat() tb
+            let valNum2 = parseFloat(elNum2.value)
+            let valido = true
+
+            if (isNaN(valNum1)) {
+                alert('Informe um primeiro número válido.')
+                elNum1.focus()
+                valido = false
+            }
+            else if (elOp.selectedIndex <= 0) {
+                alert('Selecione uma operação válida.')
+                elOp.focus()
+                valido = false
+            }
+            else if (isNaN(valNum2)) {
+                alert('Informe um segundo número válido.')
+                elNum2.focus()
+                valido = false
+            }
+
+            if (valido) {
+                let res
+
+                switch (elOp.selectedIndex) {
+                    case 1: // Adição
+                        res = valNum1 + valNum2
+                        break
+
+                    case 2: // Subtração
+                        res = valNum1 - valNum2
+                        break
+
+                    case 3: // Multiplicação
+                        res = valNum1 * valNum2
+                        break
+
+                    case 4: // Divisão
+                        res = valNum1 / valNum2
+                        break
+
+                    case 5: // Potenciação
+                        res = valNum1 ** valNum2 // Ou: Math.pow(valNum1, valNum2)
+                        break
+
+                    case 6: // Resto da divisão
+                        res = valNum1 % valNum2
+
+                }
+
+                // Formatar separador de casas decimais para o 
+                // uso do português brasileiro
+                elResultado.innerText = res.toLocaleString('pt-BR')
+
+            }
+
+        }
+
+        elCalcular.addEventListener('click', efetuar)
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de documento HTML</title>
+    <script>
+        // 'use strict' impede que variáveis sejam declaradas
+        // sem o uso de let, var ou const
+        // Inicializar variáveis diretamente é má prática de
+        // programação
+        'use strict'
+        
+        // Obtendo entrada do usuário: prompt()
+        // - Mostra uma mensagem (pergunta) para o usuário
+        // - e o deixa digitar uma resposta.
+        // - O resultado do prompt() deve ser armazenado
+        // - em uma variável para posterior utilização
+
+        let nome = prompt('Qual o seu nome?')
+
+        // Saída de dados: alert()
+        alert(nome)
+
+        // Saída de dados: document.write()
+        document.write(nome)
+
+        // Saída de dados: console.log()
+        console.log(nome)
+
+        // Entrada de dados: confirm()
+        // - Exibe uma pergunta e os botões OK e cancelar
+        // - Se apertar OK -> true
+        // - Se apertar Cancelar -> false
+        let resposta = confirm('Tem certeza?')
+        document.write(resposta)
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
