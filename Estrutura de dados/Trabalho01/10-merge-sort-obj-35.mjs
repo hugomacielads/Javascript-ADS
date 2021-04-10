@@ -50,23 +50,27 @@ let comps, divisoes, juncoes
     return vetor    // Vetor de 1 elemento, não modificado, condição de saída
 }
 
-import { candidatos } from './includes/candidatos-2018.mjs'
+import { gastos } from './includes/cota-parlamentar-35-mil.mjs'
 
 comps = 0, divisoes = 0, juncoes = 0
 // console.log('ANTES:', candidatos)
-console.time('Ordenando candidatos...')
+console.time('Ordenando gastos...')
 // Ordenando oelo nome de urna (NM_URNA_CANDIDATO)
 //const candidatosOrd = mergeSort(candidatos, (obj1, obj2) => obj1.NM_URNA_CANDIDATO > obj2.NM_URNA_CANDIDATO)
 
 //Ordenação por dois níveis: primeiro por UE (SG_UE) e, dentro da UE, pelo nº do candidato (NR_CANDIDATO)
-let candidatosOrd = mergeSort(candidatos, (obj1, obj2) => {
-    if(obj1.SE_UE === obj2.SG_UE) {
-        return obj1.NM_URNA_CANDIDATO > obj2.NM_URNA_CANDIDATO
+let gastosOrd = mergeSort(gastos, (obj1, obj2) => {
+    if(obj1.partido === obj2.partido) {
+        // Empate no partido, desempate no nome parlamentar
+        if(obj1.nome_parlamentar === obj2.nome_parlamentar) return obj1.id_documento > obj2.id_documento
+        // Partido igual, nome parlamentar igual, diferencia por nome parlamentar
+        else return obj1.nome_parlamentar > obj2.nome_parlamentar
     }
-    else return obj1.SG_UE > obj2.SG_UE     // A diferenciação se dá por UF
+    // Partidos diferentes, diferencia por partido
+    else return obj1.partido > obj2.partido
 })
 
-let memoria = process.memoryUsage().helpUsed / 1024 / 1024
-console.timeEnd('Ordenando candidatos...')
-console.log('DEPOIS:', candidatosOrd)
-console.log({comps, divisoes, juncoes})
+let memoria = process.memoryUsage().heapUsed / 1024 / 1024
+console.timeEnd('Ordenando gastos...')
+console.log('DEPOIS:', gastosOrd)
+console.log({comps, divisoes, juncoes, memoria})

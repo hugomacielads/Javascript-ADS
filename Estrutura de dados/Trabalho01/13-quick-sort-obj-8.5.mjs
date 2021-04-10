@@ -34,28 +34,23 @@ function quickSort(vetor, fnComp, ini = 0, fim =  vetor.length - 1) {
         }
     }
 
-import { candidatos } from './includes/candidatos-2018.mjs'
+import { gastos } from './includes/cota-parlamentar-8.5-mil.mjs'
 
 trocas = 0, pass = 0, comps = 0
 //console.log('ANTES:', candidatos)
-console.time('Ordenando candidatos...')
-// Ordenando oelo nome de urna (NM_URNA_CANDIDATO)
-// quickSort(candidatos, (obj1, obj2) => obj1.NM_URNA_CANDIDATO > obj2.NM_URNA_CANDIDATO)
-
-// Ordenação por SG_UE, depois por DS_CARGO e, finalmente, por NR_CANDIDATO
-const candidatosSP = candidatos.filter(obj => obj.SG_UE === 'SP')
-quickSort(candidatosSP, (a, b) => {
-    if(a.SG_UE === b.SG_UE) {
-        // Empate no cargo, desempate no número do candidato
-        if(a.DS_CARGO === b.DS_CARGO) return a.NR_CANDIDATO > b.NR_CANDIDATO
-        // UF igual, cargos dierentes, diferecia por cargo
-        else return a.DS_CARGO > b.DS_CARGO
+console.time('Ordenando gastos...')
+quickSort(gastos, (obj1, obj2) => {
+    if(obj1.partido === obj2.partido) {
+        // Empate no partido, desempate no nome parlamentar
+        if(obj1.nome_parlamentar === obj2.nome_parlamentar) return obj1.id_documento > obj2.id_documento
+        // Partido igual, nome parlamentar igual, diferencia por nome parlamentar
+        else return obj1.nome_parlamentar > obj2.nome_parlamentar
     }
-    // UFs diferentes, diferencia por UF
-    else return a.SG_UE > b.SG_UE
+    // Partidos diferentes, diferencia por partido
+    else return obj1.partido > obj2.partido
 })
 
 let memoria = process.memoryUsage().heapUsed / 1024 / 1024
-console.timeEnd('Ordenando candidatos...')
-console.log('DEPOIS:', candidatosSP)
+console.timeEnd('Ordenando gastos...')
+console.log('DEPOIS:', gastos)
 console.log({trocas, pass, comps, memoria})

@@ -34,12 +34,22 @@ let trocas, pass, comps
 
 // Função de comparação retorna true caso o PRIMEIRO objeto seja MAIOR que o SEGUNDO
 
-import { candidatos } from './includes/candidatos-2018.mjs'
+import { gastos } from './includes/cota-parlamentar-8.5-mil.mjs'
 
-console.log('ANTES:', candidatos)
-console.time('Ordenando candidatos...')
-// Ordenando oelo nome de urna (NM_URNA_CANDIDATO)
-selectionSort(candidatos, (obj1, obj2) => obj1.NM_URNA_CANDIDATO > obj2.NM_URNA_CANDIDATO)
-console.timeEnd('Ordenando candidatos...')
-console.log('DEPOIS:', candidatos)
-console.log({trocas, pass, comps})
+console.log('ANTES:', gastos)
+console.time('Ordenando gastos...')
+selectionSort(gastos, (obj1, obj2) => {
+    if(obj1.partido === obj2.partido) {
+        // Empate no partido, desempate no nome parlamentar
+        if(obj1.nome_parlamentar === obj2.nome_parlamentar) return obj1.id_documento > obj2.id_documento
+        // Partido igual, nome parlamentar igual, diferencia por nome parlamentar
+        else return obj1.nome_parlamentar > obj2.nome_parlamentar
+    }
+    // Partidos diferentes, diferencia por partido
+    else return obj1.partido > obj2.partido
+})
+
+console.timeEnd('Ordenando gastos...')
+let memoria = process.memoryUsage().heapUsed / 1024 / 1024
+console.log('DEPOIS:', gastos)
+console.log({trocas, pass, comps, memoria})
