@@ -27,20 +27,17 @@ import { gastos } from './includes/cota-parlamentar-8.5-mil.mjs'
 console.log('ANTES:', gastos)
 console.time('Ordenando candidatos...')
 bubbleSort(gastos, (obj1, obj2) => {
-    if (obj1.id_documento === obj2.id_documento) {  // última comparação id_documento (número)
-        if(obj1.nome_parlamentar === obj2.nome_parlamentar) return obj1.partido > obj2.partido
-            else return obj2.nome_parlamentar > obj2.nome_parlamentar
-        }
-    else return obj1.id_documento > obj2.id_documento
+    if(obj1.partido === obj2.partido) {
+        // Empate no partido, desempate no nome parlamentar
+        if(obj1.nome_parlamentar === obj2.nome_parlamentar) return obj1.id_documento > obj2.id_documento
+        // Partido igual, nome parlamentar igual, diferencia por nome parlamentar
+        else return obj1.nome_parlamentar > obj2.nome_parlamentar
+    }
+    // Partidos diferentes, diferencia por partido
+    else return obj1.partido > obj2.partido
 })
-console.timeEnd('Ordenando candidatos...')
-console.log('DEPOIS:', gastos)
-console.log({totTrocas, pass, comps})
 
-bubbleSort(gastos, (obj1, obj2) => {
-    if (obj1.id_documento === obj2.id_documento) {  // última comparação id_documento (número)
-        if(obj1.nome_parlamentar === obj2.nome_parlamentar) return obj1.partido > obj2.partido
-            else return obj2.nome_parlamentar > obj2.nome_parlamentar
-        }
-    else return obj1.id_documento > obj2.id_documento
-})
+console.timeEnd('Ordenando candidatos...')
+let memoria = process.memoryUsage().heapUsed / 1024 / 1024
+console.log('DEPOIS:', gastos)
+console.log({totTrocas, pass, comps, memoria})
