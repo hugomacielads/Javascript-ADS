@@ -53,12 +53,7 @@ let comps, divisoes, juncoes
 import { gastos } from './includes/cota-parlamentar-35-mil.mjs'
 
 comps = 0, divisoes = 0, juncoes = 0
-// console.log('ANTES:', candidatos)
 console.time('Ordenando gastos...')
-// Ordenando oelo nome de urna (NM_URNA_CANDIDATO)
-//const candidatosOrd = mergeSort(candidatos, (obj1, obj2) => obj1.NM_URNA_CANDIDATO > obj2.NM_URNA_CANDIDATO)
-
-//Ordenação por dois níveis: primeiro por UE (SG_UE) e, dentro da UE, pelo nº do candidato (NR_CANDIDATO)
 let gastosOrd = mergeSort(gastos, (obj1, obj2) => {
     if(obj1.partido === obj2.partido) {
         // Empate no partido, desempate no nome parlamentar

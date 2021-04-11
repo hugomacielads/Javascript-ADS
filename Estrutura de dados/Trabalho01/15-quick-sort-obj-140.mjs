@@ -37,7 +37,6 @@ function quickSort(vetor, fnComp, ini = 0, fim =  vetor.length - 1) {
 import { gastos } from './includes/cota-parlamentar-140-mil.mjs'
 
 trocas = 0, pass = 0, comps = 0
-//console.log('ANTES:', candidatos)
 console.time('Ordenando gastos...')
 quickSort(gastos, (obj1, obj2) => {
     if(obj1.partido === obj2.partido) {
