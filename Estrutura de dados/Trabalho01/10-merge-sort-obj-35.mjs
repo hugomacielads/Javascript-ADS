@@ -70,7 +70,7 @@ let gastosOrd = mergeSort(gastos, (obj1, obj2) => {
     else return obj1.partido > obj2.partido
 })
 
-let memoria = process.memoryUsage().heapUsed / 1024 / 1024
 console.timeEnd('Ordenando gastos...')
+let memoria = process.memoryUsage().heapUsed / 1024 / 1024
 console.log('DEPOIS:', gastosOrd)
 console.log({comps, divisoes, juncoes, memoria})

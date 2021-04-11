@@ -25,7 +25,7 @@ function bubbleSort(vetor, fnComp) {
 import { gastos } from './includes/cota-parlamentar-282-mil.mjs'
 
 console.log('ANTES:', gastos)
-console.time('Ordenando candidatos...')
+console.time('Ordenando gastos...')
 bubbleSort(gastos, (obj1, obj2) => {
     if(obj1.partido === obj2.partido) {
         // Empate no partido, desempate no nome parlamentar
@@ -37,7 +37,7 @@ bubbleSort(gastos, (obj1, obj2) => {
     else return obj1.partido > obj2.partido
 })
 
-console.timeEnd('Ordenando candidatos...')
+console.timeEnd('Ordenando gastos...')
 let memoria = process.memoryUsage().heapUsed / 1024 / 1024
 console.log('DEPOIS:', gastos)
 console.log({totTrocas, pass, comps, memoria})

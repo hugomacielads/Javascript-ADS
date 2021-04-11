@@ -49,8 +49,8 @@ quickSort(gastos, (obj1, obj2) => {
     // Partidos diferentes, diferencia por partido
     else return obj1.partido > obj2.partido
 })
-
 let memoria = process.memoryUsage().heapUsed / 1024 / 1024
 console.timeEnd('Ordenando gastos...')
+
 console.log('DEPOIS:', gastos)
 console.log({trocas, pass, comps, memoria})

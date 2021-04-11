@@ -32,8 +32,6 @@ let trocas, pass, comps
     }
 }
 
-// Função de comparação retorna true caso o PRIMEIRO objeto seja MAIOR que o SEGUNDO
-
 import { gastos } from './includes/cota-parlamentar-140-mil.mjs'
 
 console.log('ANTES:', gastos)
